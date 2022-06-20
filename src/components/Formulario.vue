@@ -22,7 +22,7 @@
       </b-form-group>
 
         <div class="d-flex justify-content-center my-4">
-          <b-button type="submit" variant="primary">Submit</b-button>
+          <b-button type="submit" variant="primary">Agregar</b-button>
       </div>
     </b-form>
 
