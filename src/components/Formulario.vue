@@ -1,6 +1,7 @@
 <template>
   <div>
-    <b-form @submit="onSubmit" @reset="onReset" v-if="show">
+    <h2 class="text-center">Ingresa tus gastos</h2>
+    <b-form @submit="onSubmit" v-if="show">
 
 
       <b-form-group id="input-group-1" label="Nombre gasto:" label-for="input-1">
@@ -20,9 +21,8 @@
         ></b-form-input>
       </b-form-group>
 
-        <div class="d-flex justify-content-evenly my-4">
+        <div class="d-flex justify-content-center my-4">
           <b-button type="submit" variant="primary">Submit</b-button>
-          <b-button type="reset" variant="danger">Reset</b-button>
       </div>
     </b-form>
 
@@ -43,22 +43,12 @@
     methods: {
       onSubmit(event) {
         event.preventDefault()
-        this.$emit('gasto_creado', this.gasto)
-        console.log(this.gasto)
-
+        if (isNaN(this.gasto.cantidad)) {
+            alert('Cantidad Inválida')
+            return;
+        }
+        this.$emit('gasto_creado', {...this.gasto})
         //enviando datos 
-
-      },
-      onReset(event) {
-        event.preventDefault()
-        // Reset our form values
-        this.gasto.nombre = ''
-        this.gasto.cantidad = 0
-        // Trick to reset/clear native browser form validation state
-        this.show = false
-        this.$nextTick(() => {
-          this.show = true
-        })
       },
     }
   }

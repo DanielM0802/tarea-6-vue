@@ -10,7 +10,6 @@
                 </b-card>
                 <div class="d-flex justify-content-center mt-2">
                     <b-button type="submit" variant="outline-primary">Definir Presupuesto</b-button>
-
                 </div>
             </form>
         </div>
@@ -27,6 +26,10 @@ export default {
     },
     methods: {
         guardarPresupuesto(){
+            if (this.presupuesto < 1 || isNaN(this.presupuesto)) {
+                alert('Presupuesto Inválido')
+                return;
+            }
             this.mostrarPregunta = false
             this.$emit('recibir_presupuesto', this.presupuesto)
             this.$emit('presupuesto', this.presupuesto)
